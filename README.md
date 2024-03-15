@@ -1,0 +1,42 @@
+# Import necessary libraries
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+
+# Step 1: Load the Iris dataset from your computer
+# Replace 'path_to_your_dataset' with the actual path to your dataset file
+iris_df = pd.read_csv('C:/Users/seneh/Downloads/archive (1).zip')
+
+# Assuming the dataset has columns for features and a column for the target labels
+X = iris_df.drop('Species', axis=1)  # Features
+y = iris_df['Species']  # Target labels
+
+# Step 2: Explore the data (optional)
+# You can print iris_df.head(), iris_df.info(), etc.
+
+# Step 3: Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Step 4: Choose a machine learning algorithm (Random Forest in this example)
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+
+# Step 5: Train the model
+model.fit(X_train, y_train)
+
+# Step 6: Evaluate the model
+y_pred = model.predict(X_test)
+print(classification_report(y_test, y_pred))
+
+
+
+Output:
+   precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00        10
+Iris-versicolor       1.00      1.00      1.00         9
+ Iris-virginica       1.00      1.00      1.00        11
+
+       accuracy                           1.00        30
+      macro avg       1.00      1.00      1.00        30
+   weighted avg       1.00      1.00      1.00        30
